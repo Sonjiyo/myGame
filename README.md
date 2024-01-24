@@ -27,4 +27,6 @@
 
   ### 초기 구상
   <img width="752" alt="초기구상" src="https://github.com/Sonjiyo/clickerGame/assets/147456475/442c5f97-2efd-4161-b994-136bc8bc8b5f">
-  
+
+  ### 순서도
+  ![순서도](https://github.com/Sonjiyo/clickerGame/assets/147456475/f81d843a-47d4-4743-9c4e-2cb346c430b3)
