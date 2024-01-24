@@ -1,0 +1,232 @@
+/* Fontawesome 4.7 */
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css');
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css");
+*{margin:0; padding: 0; box-sizing: border-box;}
+body{
+   font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+   color:#222;
+   width: 100vw;
+   height: 100vh;
+   display: flex; 
+   justify-content: center; 
+   align-items: center;
+   flex-direction: column;
+   background: rgb(255, 241, 237);
+}
+li{list-style: none;}
+.container{
+   width: 1024px;
+   text-align: center;
+   background: white;
+   box-shadow: 0 0 10px 0 rgba(150, 69, 32, 0.171);
+   border-radius: 30px;
+}
+.gameTitle{
+   margin:50px auto;
+   margin-bottom: 0;
+   font-weight: bold;
+   text-align: center;
+   font-size: 50px;
+}
+.game{
+   width: 100%;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+/* 캐릭터 영역 */
+.box1{
+   width: 40%;;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items:center;
+   padding:100px 50px;
+   margin-right: 50px;
+}
+.progressbar{
+   width: 300px;
+   height: 50px;
+   text-align: center;
+   background: lightgray;
+   font-size: 20px;
+   border-radius: 30px;
+   box-shadow: inset 0 0 10px 1px rgba(0, 0, 0, 0.116);
+   color:white;
+   text-shadow: 0 0 10px rgba(0, 0, 0, 0.233);
+   overflow: hidden;
+   position: relative;
+   border: 5px solid white;
+   margin-bottom: 50px;
+}
+.progressbar>span{
+   position: absolute;
+   z-index: 100;
+   top:50%;
+   left:50%;
+   transform: translate(-50%, -50%);
+}
+.bar{
+   position: absolute;
+   height: 100%;
+   background: rgb(255, 68, 93);
+   width: 20px;
+   top:0;
+   left:0;
+   box-shadow: inset 0 0 10px 1px rgba(110, 0, 28, 0.349);
+}
+.charater{
+   width: 250px;
+   height: 350px;
+   border: 1px solid black;
+   background: white;
+   border-radius: 50% 50% 30% 30%;
+   cursor: pointer;
+   transition: all .3s;
+   position: relative;
+}
+.charater::after{
+   content:"\f004";
+   font-family:"Font Awesome 5 Free";
+   font-weight: 600;
+   color:crimson;
+   position: absolute;
+   right: 25px;
+   top:50px;
+   font-size: 55px;
+   opacity: 0;
+   transition: all .2s;
+}
+.charater:hover{transform: scale(1.05);}
+.charater:active{transform: scale(0.95);}
+.charater:active::after{
+   opacity: 1;
+   top:-30px;
+}
+/* 업그레이드 영역 */
+.box2{
+   padding:100px 50px;
+   padding-left: 0;
+   align-self: flex-end;
+   width: 60%;
+}
+.box2>button{
+   border: none;
+   padding:20px 20px;
+   font-size: 20px;
+   font-weight:bold;
+   background: rgb(255, 148, 60);
+   border-radius: 10px 10px 0 0;
+   color:white;
+   user-select:none;
+   cursor: pointer;
+}
+.box2>button.active{background: rgb(255, 212, 131);color:rgb(201, 84, 38);}
+
+.autoBtn{margin-right: 25px;}
+.upgradeBtn{margin-left: 25px;}
+.content{
+   background: rgb(255, 212, 131);
+   border-radius:20px;
+   box-shadow: 5px 5px 2px 0 rgb(238, 149, 97);
+   height: 400px;
+   padding:20px 0;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+/* 자동화 업그레이드 */
+.shop1{
+   display: flex;
+   /* display: none; */
+   width: 100%;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+}
+.items{
+   background: white;
+   width: 90%;
+   padding:5px;
+   display: flex;
+   align-items: center;
+   margin-bottom:10px;
+   border-radius: 10px;
+   cursor: pointer;
+   user-select:none;
+   position: relative;
+   justify-content: space-between;
+   position: relative;
+}
+.items::after{
+   content:"1초당 ♥0.1";
+   display: none;
+   width: 100px;
+   height: 30px;
+   background: white;
+   position: absolute;
+   top:-20px;
+   right:8px;
+   border-radius: 5px;
+}
+.items:last-child{margin-bottom: 0;}
+.items:hover{box-shadow:inset 0 0 1px 2px rgb(255, 152, 55);}
+.items:hover::after{display: block;}
+.items:active{box-shadow:inset 0 0 1px 2px rgb(240, 88, 0);}
+
+.items .title{display: flex;align-items: center;}
+.items .image{margin-right: 20px;width: 50px; height: 50px;}
+.items .image>img{width: 100%; height: 100%;}
+.items .name{
+   font-size: 25px;
+   margin-right: 30px;
+   font-weight: bold;
+}
+.items .price{
+   margin-right:50px;
+   font-size: 18px;
+   justify-self: flex-end;
+}
+.items .price::before{
+   content:"\f004";
+   font-family:"Font Awesome 5 Free";
+   font-weight: 600;
+   color:crimson;
+   font-size: 14px;
+   margin-right: 10px;
+}
+.items .step{
+   margin:0;
+   font-size: 50px;
+   position: absolute;
+   bottom: -5px;
+   font-weight: bold;
+   color:#ffac683a;
+   right:5px;
+}
+
+/* 클릭 업그레이드 */
+
+
+
+@media screen and (max-width:1024px) {
+   .container{width: 90%;}
+}
+@media screen and (max-width:900px) {
+   .container{width: 90%;}
+   .gameTitle{font-size: 30px;}
+   .game{flex-direction: column;}
+   .box1{width: 100%;margin-right: 0;padding:20px 0;}
+   .charater{
+      width: 150px;
+      height: 200px;
+   }
+   .progressbar{
+      height: 30px;
+      margin-bottom: 20px;
+   }
+   .box2{width:100%; align-self: center;padding:0;}
+   .items .name{font-size: 25px;}
+}
