@@ -5,22 +5,24 @@
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>Document</title>
    <link rel="stylesheet" href="style.css">
-   <script src="game.js"></script>
+   <script defer src="game.js"></script>
 </head>
 <body>
+   <i class="far fa-hand-paper cursor"></i>
+   <i class="fas fa-heart effect"></i>
    <div class="container">
       <div class="gameTitle">타이틀 제목</div>
       <div class="game">
          <div class="box1">
             <div class="progressbar">
-               <span>0/100</span>
+               <span></span>
                <div class="bar"></div>
             </div>
             <div class="charater"></div>
          </div>
          <div class="box2">
             <button class="autoBtn active">자동화</button>
-            <button class="upgradeBtn">클릭</button>
+            <button class="upgradeBtn">쓰다듬기</button>
             <div class="content">
                <ul class="shop1">
                   <li class="items">
@@ -67,7 +69,12 @@
                   </li>
                </ul>
                <div class="shop2">
-
+                  <i class="far fa-hand-paper"></i>
+                  <div>
+                     <button class="buyBtn">쓰다듬 업그레이드</button>
+                     <span>비용 : 500원</span>
+                     <span>펫 쓰다듬기 애정도 2배 증가</span>
+                  </div>
                </div>
             </div>
          </div>
