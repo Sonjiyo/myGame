@@ -204,6 +204,9 @@ li{list-style: none;}
    cursor: none;
    transition: all .3s;
    position: relative;
+   display: flex;
+   justify-content: center;
+   align-items: end;
 }
 .charater .egg{
    width: 100%;
