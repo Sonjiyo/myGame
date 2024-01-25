@@ -4,16 +4,66 @@ const shop1 = document.querySelector('.shop1');
 const shop2 = document.querySelector('.shop2');
 const cursor = document.querySelector('.cursor');
 const charater = document.querySelector('.charater');
-const effect = document.querySelector('.effect');
 const progressbarText = document.querySelector('.progressbar span');
 const progressbar = document.querySelector('.bar');
 const buyBtn = document.querySelector('.buyBtn');
+const renameBtn = document.querySelector('.renameBtn');
+const autoItems = document.querySelectorAll('.items');
+const autoPrices = document.querySelectorAll('.items .price');
+const autoSteps = document.querySelectorAll('.items .step');
+const perUps = document.querySelectorAll('.perUp');
+const autoPrice = [15,100,1100,12000,130000];
+const autoStep = [0,0,0,0,0];
+const perUp = [0.1, 1.0, 8.0, 47.0, 260.0];
 
-let point = 0;
+
 let maxPoint = 1000;
-let increase =107;
+let increase =100;
 let increaseW = document.querySelector('.progressbar').offsetWidth/maxPoint;
+let point = 0;
+// if(localStorage.getItem('point')!=undefined){
+//    point = localStorage.getItem('point');
+//    progressbar.style.width=`${point*increaseW}px`;
+// }
 progressbarText.textContent=`${point}/${maxPoint}`;
+
+//alert창
+function customAlert(text){
+   const modal = document.querySelector('.modal');
+   const alert = document.querySelector('.alert');
+   const alertMsg = document.querySelector('.alertMsg');
+   const alertBtn = document.querySelector('.alertBtn');
+
+   alertMsg.textContent = text;
+   modal.style.display='block';
+   alert.classList.add('active');
+
+   alertBtn.addEventListener('click', ()=>{
+      modal.style.display='none';
+      alert.classList.remove('active');
+   })
+}
+
+//펫이름 설정
+document.querySelector('.petName span').innerHTML =  localStorage.getItem("name")==undefined ? '펫이름' :localStorage.getItem("name");
+
+//펫이름 변경
+let isNameChange = false;
+renameBtn.addEventListener('click', ()=>{
+   if(!isNameChange){
+      document.querySelector('.renameBtn i').classList.remove('fa-edit');
+      document.querySelector('.renameBtn i').classList.add('fa-check-square');
+      const name = document.querySelector('.petName span').textContent;
+      document.querySelector('.petName span').innerHTML = `<input type="text" value="${name}">`;
+   }else{
+      document.querySelector('.renameBtn i').classList.add('fa-edit');
+      document.querySelector('.renameBtn i').classList.remove('fa-check-square');
+      const name = document.querySelector('.petName input').value;
+      document.querySelector('.petName span').innerHTML = `${name}`;
+      localStorage.setItem("name",name);
+   }
+   isNameChange = !isNameChange;
+})
 
 //탭전환
 autoBtn.addEventListener('click', ()=>{
@@ -55,23 +105,35 @@ charater.addEventListener('click', e=>{
    //클릭시 하트 이펙트
    const mouseX = e.clientX;
    const mouseY = e.clientY;
+   const effect = document.createElement('i');
+   effect.classList.add('fas');
+   effect.classList.add('fa-heart');
+   effect.classList.add('effect');
+   document.body.appendChild(effect);
+
    effect.style.left = mouseX + 'px';
    effect.style.top = mouseY + 'px';
-   effect.style.opacity='1';
+   effect.classList.add('active');
    setTimeout(() => {
-      effect.style.top = (mouseY-50) + 'px';
-      effect.style.opacity='0';
-   }, 100);
+      effect.classList.remove('active');
+      effect.remove();
+   }, 300);
 
    //클릭당 포인트 증가
    if(point==maxPoint) return;
    point+=increase;
-   if(point>=maxPoint) point=maxPoint;
-   resetProgress();
+   if(point>=maxPoint) {
+      maxPoint*=20;
+      increaseW = document.querySelector('.progressbar').offsetWidth/maxPoint;
+      document.querySelector('.charater').innerHTML = `<img src="./img/1차성장.png" alt="1차성장">`;
+   }
+      resetProgress();
+
+   localStorage.setItem('point',point);
 })
 
 function resetProgress(){
-   progressbarText.textContent=`${point}/${maxPoint}`;
+   progressbarText.textContent=`${parseInt(point)}/${maxPoint}`;
    progressbar.style.width=`${point*increaseW}px`;
 }
 
@@ -80,7 +142,7 @@ let ClickPoint = 500; //기본값 500
 document.querySelector('.clickPrice').textContent=`비용 : ♥ ${ClickPoint}`;
 buyBtn.addEventListener('click', ()=>{
    if(ClickPoint>point){
-      alert('애정도가 부족합니다.');
+      customAlert('업그레이드를 위한 충분한 애정도가 없습니다.');
       return;
    }
    point-=ClickPoint;
@@ -89,3 +151,36 @@ buyBtn.addEventListener('click', ()=>{
    document.querySelector('.clickPrice').textContent=`비용 : ♥ ${ClickPoint}`;
    resetProgress();
 })
+
+//자동화 업그레이드
+for(let i=0; i<autoItems.length; i++){
+   autoItems[i].addEventListener('click', ()=>{
+      if(point<autoPrice[i]){
+         customAlert('업그레이드를 위한 충분한 애정도가 없습니다.');
+         return;
+      }
+      point-=autoPrice[i];
+      autoPrice[i]=parseInt(autoPrice[i]*1.5);
+      autoPrices[i].textContent = autoPrice[i];
+      autoSteps[i].textContent=++autoStep[i];
+      if(i==0){
+         perUps[i].textContent = `1초당 ♥ ${(perUp[i]*(autoStep[i]+1)).toFixed(1)}`;
+      }else{
+         perUps[i].textContent = `1초당 ♥ ${(perUp[i]*(autoStep[i]+1))}`;
+      }
+      resetProgress();
+   })
+   // 0.1, 1, 8, 47, 260
+}
+
+// 자동화 작동
+
+let interval = setInterval(() => {
+   for(let i=0; i<autoStep.length; i++){
+      point += autoStep[i]*perUp[i];
+      if(point>=maxPoint){
+         point = maxPoint;
+      }
+      resetProgress();
+   }
+}, 1000);

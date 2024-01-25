@@ -8,18 +8,36 @@
    <script defer src="game.js"></script>
 </head>
 <body>
-   <i class="far fa-hand-paper cursor"></i>
-   <i class="fas fa-heart effect"></i>
+   <!-- 마우스 커서 -->
+   <i class="fas fa-hand-paper cursor"></i> 
+   <!-- 하트 이펙트 -->
+   <!-- <i class="fas fa-heart effect"></i> -->
+   <!-- 경고창 -->
+   <div class="modal">
+      <div class="alert">
+         <p class="alertMsg">업그레이드를 위한 충분한 애정도가 없습니다.</p>
+         <button class="alertBtn">확인</button>
+      </div>
+   </div>
+   <!-- 게임 화면 -->
    <div class="container">
-      <div class="gameTitle">타이틀 제목</div>
+      <div class="gameTitle">펫 키우기</div>
       <div class="game">
+         <!-- 펫 영역 -->
          <div class="box1">
+            <div class="petName">
+               <span></span>
+               <button class="renameBtn"><i class="fas fa-edit"></i></button>
+            </div>
             <div class="progressbar">
                <span></span>
                <div class="bar"></div>
             </div>
-            <div class="charater"></div>
+            <div class="charater">
+               <div class="egg"></div>
+            </div>
          </div>
+         <!-- 업그레이드 영역 -->
          <div class="box2">
             <button class="autoBtn active">자동화</button>
             <button class="upgradeBtn">쓰다듬기</button>
@@ -27,58 +45,48 @@
                <ul class="shop1">
                   <li class="items">
                      <div class="title">
-                        <div class="image">
-                           <!-- <img src="http://placehold.it/50X50" alt=""> -->
-                           <p>👍︎</p>
-                        </div>
+                        <p class="image">👍︎</p>
                         <p class="name">칭찬</p>
                      </div>
                      <p class="price">15</p>
                      <p class="step">0</p>
+                     <div class="perUp">1초당 ♥ 0.1</div>
                   </li>
                   <li class="items">
                      <div class="title">
-                        <div class="image">
-                           <!-- <img src="http://placehold.it/50X50" alt=""> -->
-                           <p>🍖</p>
-                        </div>
+                        <p class="image">🍖</p>
                         <p class="name">먹이</p>
                      </div>
                      <p class="price">100</p>
                      <p class="step">0</p>
+                     <div class="perUp">1초당 ♥ 1</div>
                   </li>
                   <li class="items">
                      <div class="title">
-                        <div class="image">
-                           <!-- <img src="http://placehold.it/50X50" alt=""> -->
-                           <p>🏉</p>
-                        </div>
+                        <p class="image">🏉</p>
                         <p class="name">놀이</p>
                      </div>
                      <p class="price">1,100</p>
                      <p class="step">0</p>
+                     <div class="perUp">1초당 ♥ 8</div>
                   </li>
                   <li class="items">
                      <div class="title">
-                        <div class="image">
-                           <!-- <img src="http://placehold.it/50X50" alt=""> -->
-                           <p>🌳</p>
-                        </div>
+                        <p class="image">🌳</p>
                         <p class="name">산책</p>
                      </div>
                      <p class="price">12,000</p>
                      <p class="step">0</p>
+                     <div class="perUp">1초당 ♥ 47</div>
                   </li>
                   <li class="items">
                      <div class="title">
-                        <div class="image">
-                           <!-- <img src="http://placehold.it/50X50" alt=""> -->
-                           <p>🛁</p>
-                        </div>
+                        <p class="image">🛁</p>
                         <p class="name">목욕</p>
                      </div>
                      <p class="price">130,000</p>
                      <p class="step">0</p>
+                     <div class="perUp">1초당 ♥ 260</div>
                   </li>
                </ul>
                <div class="shop2">
