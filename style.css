@@ -353,6 +353,13 @@ li{list-style: none;}
 }
 .shop2 span{color:rgb(192, 77, 24);}
 
+/* 미니게임 */
+.miniGame{
+   width: 90%;
+   border: 1px solid;
+   margin:0 auto;
+   display: none;
+}
 
 @media screen and (max-width:1024px) {
    .container{width: 90%;}
@@ -374,4 +381,5 @@ li{list-style: none;}
    .items .name{font-size: 25px;}
    .alert{width: 90%;}
    .alertMsg{padding:20px;}
+   .miniGame{margin-top:50px;}
 }
