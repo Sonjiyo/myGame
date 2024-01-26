@@ -372,6 +372,9 @@ li{list-style: none;}
    transition: all .3s;
    background: #ffc187;
    overflow: hidden;
+   color: white;
+   font-weight: bold;
+   font-size: 30px;
 }
 .miniGame button:hover{transform: scale(1.1);}
 .miniGame button:active{transform: scale(0.9);}
