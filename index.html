@@ -5,6 +5,7 @@
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>Document</title>
    <link rel="stylesheet" href="style.css">
+   <script defer src="flappyBird.js"></script>
    <script defer src="game.js"></script>
 </head>
 <body>
@@ -99,18 +100,24 @@
             </div>
          </div>
       </div>
+      <h1>🎲미니게임</h1>
       <div class="miniGame">
-         <h2>미니게임</h2>
-         <button class="flappyBird">
+         <button class="fbBtn">
+            <img src="./img/buttomImg.png" alt="flappyBirdImg">
+         </button>
+         <button class="test1">
 
          </button>
-         <button class="flappyBird">
+         <button class="test2">
 
-         </button>
-         <button class="flappyBird">
-            
          </button>
       </div>
+   </div>
+   <div class="flappyBird">
+      <canvas width="360" height="640" id="flappyGame"></canvas>
+      <!-- <button class="startBtn">시작</button> -->
+      <p>z를 눌러서 시작</p>
+      <button class="exitBtn">종료</button>
    </div>
 </body>
 </html>

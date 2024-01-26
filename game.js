@@ -21,6 +21,7 @@ let maxPoint = 1000;
 let increase =100;
 let increaseW = document.querySelector('.progressbar').offsetWidth/maxPoint;
 let point = 0;
+let cnt = 0;
 // if(localStorage.getItem('point')!=undefined){
 //    point = localStorage.getItem('point');
 //    progressbar.style.width=`${point*increaseW}px`;
@@ -120,12 +121,18 @@ charater.addEventListener('click', e=>{
    }, 300);
 
    //클릭당 포인트 증가
-   if(point==maxPoint) return;
    point+=increase;
    if(point>=maxPoint) {
-      maxPoint*=20;
+      cnt++;
+      if(cnt>=6) {
+         point=maxPoint;
+         resetProgress();
+         customAlert('펫이 모두 성장했습니다.');
+         return;
+      }
+      maxPoint*=5;
       increaseW = document.querySelector('.progressbar').offsetWidth/maxPoint;
-      document.querySelector('.charater').innerHTML = `<img src="./img/1차성장.png" alt="1차성장">`;
+      document.querySelector('.charater').innerHTML = `<img src="./img/${cnt}차성장.png" alt="${cnt}차성장">`;
    }
       resetProgress();
 
@@ -184,3 +191,19 @@ let interval = setInterval(() => {
       resetProgress();
    }
 }, 1000);
+
+// 미니게임
+document.querySelector('.fbBtn').addEventListener('click',()=>{
+   document.querySelector('.flappyBird').style.display='block';
+})
+document.querySelector('.flappyBird .exitBtn').addEventListener('click', ()=>{
+   document.querySelector('.flappyBird').style.display='none';
+})
+
+
+document.querySelector('.test1').addEventListener('click',()=>{
+   customAlert('준비중입니다.');
+})
+document.querySelector('.test2').addEventListener('click',()=>{
+   customAlert('준비중입니다.');
+})
