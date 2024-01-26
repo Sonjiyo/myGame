@@ -10,7 +10,7 @@ let context;
 
 //bird
 let birdWidth = 34; //width/height ratio = 408/228 = 17/12
-let birdHeight = 24;
+let birdHeight = 34;
 let birdX = boardWidth/8;
 let birdY = boardHeight/2;
 let birdImg;
@@ -120,10 +120,10 @@ function placePipes() {
       return;
    }
 
-    //(0-1) * pipeHeight/2.
-    // 0 -> -128 (pipeHeight/4)
-    // 1 -> -128 - 256 (pipeHeight/4 - pipeHeight/2) = -3/4 pipeHeight
+   //파이프의 높이를 랜덤으로 하기 위함
+   //            파이프 높이  최대 내려오는 길이  줄어드는 정도(랜덤)
    let randomPipeY = pipeY - pipeHeight/4 - Math.random()*(pipeHeight/2);
+   //위 파이프와 아래 파이프간의 간격
    let openingSpace = board.height/4;
 
    let topPipe = {
@@ -151,10 +151,10 @@ function moveBird(e) {
    startMsg.style.display='none';
    exitBtn.style.display='none';
    if (e.code == "KeyZ") {
-      //jump
+      //점프할 때 y가 -6
       velocityY = -6;
 
-        //reset game
+      //게임 리셋
       if (gameOver) {
          bird.y = birdY;
          pipeArray = [];
@@ -164,7 +164,7 @@ function moveBird(e) {
    }
 }
 
-function detectCollision(a, b) { //새와 장애물
+function detectCollision(a, b) { //새와 장애물이 충돌했을 때
    return a.x < b.x + b.width &&   
          a.x + a.width > b.x &&   
          a.y < b.y + b.height &&  

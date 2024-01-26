@@ -16,7 +16,6 @@ const autoPrice = [15,100,1100,12000,130000];
 const autoStep = [0,0,0,0,0];
 const perUp = [0.1, 1.0, 8.0, 47.0, 260.0];
 
-
 let maxPoint = 1000;
 let increase =100;
 let increaseW = document.querySelector('.progressbar').offsetWidth/maxPoint;
@@ -26,7 +25,7 @@ let cnt = 0;
 //    point = localStorage.getItem('point');
 //    progressbar.style.width=`${point*increaseW}px`;
 // }
-progressbarText.textContent=`${point}/${maxPoint}`;
+progressbarText.textContent=`${point}/${maxPoint.toLocaleString('ko-KR')}`;
 
 //alert창
 function customAlert(text){
@@ -88,8 +87,8 @@ charater.addEventListener('mouseout', ()=>{
    cursor.style.display='none';
 });
 charater.addEventListener('mousemove', e=>{
-   const mouseX = e.clientX;
-   const mouseY = e.clientY;
+   const mouseX = e.pageX;
+   const mouseY = e.pageY;
    cursor.style.left = mouseX + 'px';
    cursor.style.top = mouseY + 'px';
 });
@@ -104,8 +103,8 @@ charater.addEventListener('mouseup', e=>{
 })
 charater.addEventListener('click', e=>{
    //클릭시 하트 이펙트
-   const mouseX = e.clientX;
-   const mouseY = e.clientY;
+   const mouseX = e.pageX;
+   const mouseY = e.pageY;
    const effect = document.createElement('i');
    effect.classList.add('fas');
    effect.classList.add('fa-heart');
@@ -140,13 +139,13 @@ charater.addEventListener('click', e=>{
 })
 
 function resetProgress(){
-   progressbarText.textContent=`${parseInt(point)}/${maxPoint}`;
+   progressbarText.textContent=`${parseInt(point).toLocaleString('ko-KR')}/${maxPoint.toLocaleString('ko-KR')}`;
    progressbar.style.width=`${point*increaseW}px`;
 }
 
 // 클릭 업그레이드
 let ClickPoint = 500; //기본값 500
-document.querySelector('.clickPrice').textContent=`비용 : ♥ ${ClickPoint}`;
+document.querySelector('.clickPrice').textContent=`비용 : ♥ ${ClickPoint.toLocaleString('ko-KR')}`;
 buyBtn.addEventListener('click', ()=>{
    if(ClickPoint>point){
       customAlert('업그레이드를 위한 충분한 애정도가 없습니다.');
@@ -155,7 +154,7 @@ buyBtn.addEventListener('click', ()=>{
    point-=ClickPoint;
    increase*=2;
    ClickPoint*=3;
-   document.querySelector('.clickPrice').textContent=`비용 : ♥ ${ClickPoint}`;
+   document.querySelector('.clickPrice').textContent=`비용 : ♥ ${ClickPoint.toLocaleString('ko-KR')}`;
    resetProgress();
 })
 
@@ -168,12 +167,12 @@ for(let i=0; i<autoItems.length; i++){
       }
       point-=autoPrice[i];
       autoPrice[i]=parseInt(autoPrice[i]*1.5);
-      autoPrices[i].textContent = autoPrice[i];
+      autoPrices[i].textContent = autoPrice[i].toLocaleString('ko-KR');
       autoSteps[i].textContent=++autoStep[i];
       if(i==0){
          perUps[i].textContent = `1초당 ♥ ${(perUp[i]*(autoStep[i]+1)).toFixed(1)}`;
       }else{
-         perUps[i].textContent = `1초당 ♥ ${(perUp[i]*(autoStep[i]+1))}`;
+         perUps[i].textContent = `1초당 ♥ ${(perUp[i]*(autoStep[i]+1)).toLocaleString('ko-KR')}`;
       }
       resetProgress();
    })
