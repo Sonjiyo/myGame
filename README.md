@@ -33,5 +33,4 @@
 
 ## 실제 게임 화면
 ![image](https://github.com/Sonjiyo/clickerGame/blob/main/img/clickerGame.gif)
-![image](https://github.com/Sonjiyo/clickerGame/assets/147456475/447a74bd-a2fe-4fc8-995a-d615bb237e4f)
   https://sonjiyo.github.io/clickerGame
